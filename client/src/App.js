@@ -1,8 +1,17 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
 
 function App() {
-  return <div className="App">hello world</div>;
+  return (
+    <>
+      <Container maxWidth="lg">
+        <AppBar position="static" color="inherit">
+          <Typography variant="h2" align="center">
+            Memories
+          </Typography>
+        </AppBar>
+      </Container>
+    </>
+  );
 }
 
 export default App;
