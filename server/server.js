@@ -8,10 +8,10 @@ dotenv.config();
 
 const app = express();
 
-app.use("/post", postRoute);
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use("/post", postRoute);
 
 // connection string
 const connectionString = process.env.MONGO_URI;
