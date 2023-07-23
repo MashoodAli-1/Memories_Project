@@ -1,6 +1,7 @@
 import React from "react";
 import Post from "./Post/Post.js";
 import useStyles from "./style.js";
+import { Grid, CircularProgress } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 const theme = createTheme();
@@ -8,12 +9,22 @@ const Posts = () => {
   const { posts } = useSelector((state) => state.posts);
   const classes = useStyles();
   console.log(posts);
-  return (
+  return !posts.length ? (
+    <CircularProgress />
+  ) : (
     <>
-      <ThemeProvider theme={theme}>
-        <div>Posts</div>
-        <Post />
-      </ThemeProvider>
+      <Grid
+        className={classes.mainContainer}
+        container
+        alignItems="stretch"
+        spacing={3}
+      >
+        {posts.map((post) => (
+          <Grid key={post._id} item xs={12} sm={6}>
+            <Post post={post} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };
