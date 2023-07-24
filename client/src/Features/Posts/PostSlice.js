@@ -15,8 +15,15 @@ export const createPost = createAsyncThunk("post/createPost", async (post) => {
   return data;
 });
 export const updatePost = createAsyncThunk("post/updatePost", async (post) => {
-  console.log(`post creator = ${post.creator}`);
   const { data } = await api.updatePost(post);
+  return data;
+});
+export const deletePost = createAsyncThunk("post/deletePost", async (id) => {
+  await api.deletePost(id);
+  return id;
+});
+export const likePost = createAsyncThunk("post/likePost", async (id) => {
+  const { data } = await api.likePost(id);
   return data;
 });
 
@@ -39,7 +46,14 @@ const PostSlice = createSlice({
       state.posts = [...state.posts, action.payload];
     },
     [updatePost.fulfilled]: (state, action) => {
-      console.log(`creator = ${action.payload.creator}`);
+      state.posts = state.posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post
+      );
+    },
+    [deletePost.fulfilled]: (state, action) => {
+      state.posts = state.posts.filter((post) => post._id !== action.payload);
+    },
+    [likePost.fulfilled]: (state, action) => {
       state.posts = state.posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
