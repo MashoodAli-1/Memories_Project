@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const url = "http://localhost:4000/post";
+// const url = "http://localhost:4000/post";
+const url = "https://memories-project-gules.vercel.app/post";
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);

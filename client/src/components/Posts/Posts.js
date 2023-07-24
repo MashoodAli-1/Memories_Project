@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "./Post/Post.js";
+import Post from "./Post/post.js";
 import useStyles from "./style.js";
 import { Grid, CircularProgress } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
